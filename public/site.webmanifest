@@ -1,0 +1,54 @@
+{
+  "name": "Farm2Door - Produse proaspete direct de la fermieri",
+  "short_name": "Farm2Door",
+  "description": "Farm2Door conectează fermierii locali cu clienții care doresc produse proaspete și sănătoase, livrate direct la ușa ta.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9FBF6",
+  "theme_color": "#2E7D32",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/icon-192x192-maskable.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512x512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Înscrie-te în Lista de Așteptare",
+      "short_name": "Înscrie-te",
+      "description": "Înscrie-te în lista de așteptare pentru a fi printre primii care încearcă Farm2Door",
+      "url": "/#lista-asteptare",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Cum funcționează",
+      "short_name": "Cum funcționează",
+      "description": "Află cum funcționează Farm2Door",
+      "url": "/#cum-functioneaza",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "lang": "ro",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "categories": ["food", "shopping", "lifestyle"]
+} 

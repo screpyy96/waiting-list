@@ -42,17 +42,19 @@ export default function Home() {
             </div>
           </div>
           <div className="md:w-1/2 relative mt-6 md:mt-0">
-            <div className="w-full h-[200px] md:h-[350px] relative rounded-xl overflow-hidden shadow-xl bg-green-100">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center p-6">
-                  <div className="text-3xl md:text-4xl font-bold text-green-800 mb-2">Farm2Door</div>
-                  <div className="text-lg md:text-xl text-green-700">Produse proaspete direct de la fermieri</div>
-                </div>
+            <div className="w-full h-[200px] md:h-[350px] relative rounded-xl overflow-hidden shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-green-800/30 to-transparent z-10"></div>
+              <div className="relative w-full h-full">
+                <img
+                  src="/images/legume.webp"
+                  alt="Legume proaspete de la fermieri locali"
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
-            <div className="absolute -bottom-4 -right-4 bg-white p-3 rounded-lg shadow-lg">
-              <div className="text-[#2E7D32] font-bold text-sm md:text-base">100% Natural</div>
-              <div className="text-gray-600 text-xs md:text-sm">Direct de la fermieri</div>
+              <div className="absolute bottom-4 left-4 z-20 bg-white/90 p-3 rounded-lg shadow-lg">
+                <div className="text-[#2E7D32] font-bold text-sm md:text-base">100% Natural</div>
+                <div className="text-gray-600 text-xs md:text-sm">Direct de la fermieri</div>
+              </div>
             </div>
           </div>
         </div>
