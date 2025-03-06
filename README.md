@@ -20,6 +20,34 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Configurarea Supabase pentru Lista de Așteptare
+
+Acest proiect include o funcționalitate de listă de așteptare care folosește Supabase ca backend. Pentru a o configura:
+
+1. Creează un cont Supabase la [supabase.com](https://supabase.com) dacă nu ai deja unul.
+2. Creează un nou proiect în Supabase.
+3. În editorul SQL, creează un nou tabel pentru lista de așteptare:
+
+```sql
+CREATE TABLE waiting_list (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  phone TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+```
+
+4. Copiază URL-ul Supabase și cheia anonimă din setările proiectului.
+5. Creează un fișier `.env.local` în directorul rădăcină al proiectului tău bazat pe fișierul `.env.local.example`:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+6. Repornește serverul de dezvoltare dacă este deja pornit.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
