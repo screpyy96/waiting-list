@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import supabase from '@/lib/supabase';
 
 export default function WaitingList() {
@@ -11,6 +11,14 @@ export default function WaitingList() {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSupabaseReady, setIsSupabaseReady] = useState(false);
+
+  useEffect(() => {
+    // Verificăm dacă Supabase este inițializat
+    if (supabase) {
+      setIsSupabaseReady(true);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +30,15 @@ export default function WaitingList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Verificăm dacă Supabase este disponibil
+    if (!isSupabaseReady) {
+      setStatus({
+        type: 'error',
+        message: 'Serviciul de înregistrare nu este disponibil momentan. Te rugăm să încerci mai târziu.'
+      });
+      return;
+    }
     
     // Validare
     if (!formData.name.trim()) {
@@ -53,11 +70,15 @@ export default function WaitingList() {
 
     try {
       // Check if email already exists
-      const { data: existingEmails } = await supabase
+      const { data: existingEmails, error: checkError } = await supabase
         .from('waiting_list')
         .select('email')
         .eq('email', formData.email)
         .single();
+
+      if (checkError && checkError.code !== 'PGRST116') {
+        throw checkError;
+      }
 
       if (existingEmails) {
         setStatus({
