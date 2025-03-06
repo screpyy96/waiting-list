@@ -1,11 +1,20 @@
+'use client';
+
+import { useState } from 'react';
 import Image from "next/image";
 import WaitingList from "@/components/WaitingList";
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
     <div className="min-h-screen hero-pattern">
       {/* Header */}
-      <header className="container mx-auto px-4 py-3 flex justify-between items-center">
+      <header className="container mx-auto px-4 py-3 flex justify-between items-center relative z-50">
         <div className="flex items-center">
           <div className="text-[#2E7D32] font-bold text-2xl md:text-3xl">Farm2Door</div>
         </div>
@@ -15,11 +24,58 @@ export default function Home() {
           <a href="#beneficii" className="text-gray-700 hover:text-[#2E7D32] transition-colors">Beneficii</a>
           <a href="#contact" className="text-gray-700 hover:text-[#2E7D32] transition-colors">Contact</a>
         </nav>
-        <button className="md:hidden text-[#2E7D32]">
+        <button 
+          className="md:hidden text-[#2E7D32] focus:outline-none"
+          onClick={toggleMobileMenu}
+          aria-label="Meniu"
+        >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="absolute top-full left-0 right-0 bg-white shadow-lg rounded-b-lg p-4 md:hidden z-50">
+            <nav className="flex flex-col space-y-3">
+              <a 
+                href="#despre" 
+                className="text-gray-700 hover:text-[#2E7D32] transition-colors py-2 px-4 rounded-lg hover:bg-gray-100"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Despre noi
+              </a>
+              <a 
+                href="#cum-functioneaza" 
+                className="text-gray-700 hover:text-[#2E7D32] transition-colors py-2 px-4 rounded-lg hover:bg-gray-100"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Cum funcționează
+              </a>
+              <a 
+                href="#beneficii" 
+                className="text-gray-700 hover:text-[#2E7D32] transition-colors py-2 px-4 rounded-lg hover:bg-gray-100"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Beneficii
+              </a>
+              <a 
+                href="#contact" 
+                className="text-gray-700 hover:text-[#2E7D32] transition-colors py-2 px-4 rounded-lg hover:bg-gray-100"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+              <a 
+                href="#lista-asteptare" 
+                className="bg-[#2E7D32] text-white py-2 px-4 rounded-lg text-center font-medium hover:bg-[#1B5E20] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Înscrie-te acum
+              </a>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
