@@ -1,33 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌱 Farm2Door - Conectăm Fermierii cu Consumatorii
 
-## Getting Started
+Farm2Door este o platformă modernă care conectează fermierii locali direct cu consumatorii, eliminând intermediarii și oferind acces la produse proaspete și sănătoase.
 
-First, run the development server:
+![Farm2Door Preview](public/images/og-image.jpg)
 
+## 🚀 Caracteristici
+
+- 💻 Interfață modernă și responsivă
+- 🔒 Sistem de listă de așteptare cu Supabase
+- 📱 Design adaptabil pentru toate dispozitivele
+- ⚡ Performanță optimizată
+- 🎨 Animații și tranziții fluide
+- 🔍 SEO optimizat
+
+## 🛠️ Tehnologii Folosite
+
+- **Frontend:**
+  - Next.js 15.2
+  - React 19
+  - TailwindCSS
+  - Geist Font
+
+- **Backend:**
+  - Supabase
+  - PostgreSQL
+
+- **Tooling:**
+  - ESLint
+  - PostCSS
+  - Turbopack
+
+## 📦 Instalare
+
+1. **Clonează repository-ul:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/farm2door.git
+cd farm2door
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Instalează dependențele:**
+```bash
+npm install
+# sau
+yarn install
+# sau
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. **Configurează variabilele de mediu:**
+Creează un fișier `.env.local` și adaugă:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+SITE_URL=your-production-url
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Configurarea Supabase pentru Lista de Așteptare
-
-Acest proiect include o funcționalitate de listă de așteptare care folosește Supabase ca backend. Pentru a o configura:
-
-1. Creează un cont Supabase la [supabase.com](https://supabase.com) dacă nu ai deja unul.
-2. Creează un nou proiect în Supabase.
-3. În editorul SQL, creează un nou tabel pentru lista de așteptare:
-
+4. **Configurează baza de date Supabase:**
+Execută următorul SQL în editorul SQL Supabase:
 ```sql
 CREATE TABLE waiting_list (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -38,27 +67,78 @@ CREATE TABLE waiting_list (
 );
 ```
 
-4. Copiază URL-ul Supabase și cheia anonimă din setările proiectului.
-5. Creează un fișier `.env.local` în directorul rădăcină al proiectului tău bazat pe fișierul `.env.local.example`:
-
+5. **Pornește serverul de dezvoltare:**
+```bash
+npm run dev
+# sau
+yarn dev
+# sau
+pnpm dev
 ```
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+
+Deschide [http://localhost:3000](http://localhost:3000) în browser pentru a vedea rezultatul.
+
+## 📝 Dezvoltare
+
+### Structura Proiectului
+```
+farm2door/
+├── src/
+│   ├── app/              # Next.js App Router
+│   ├── components/       # Componente React reutilizabile
+│   └── lib/             # Utilități și configurări
+├── public/              # Fișiere statice
+└── ...
 ```
 
-6. Repornește serverul de dezvoltare dacă este deja pornit.
+### Comenzi Disponibile
 
-## Learn More
+- `npm run dev` - Pornește serverul de dezvoltare
+- `npm run build` - Construiește aplicația pentru producție
+- `npm run start` - Pornește serverul de producție
+- `npm run lint` - Rulează verificarea codului
+- `npm run analyze` - Analizează bundle-ul
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Aplicația este optimizată pentru deployment pe Vercel:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Importă repository-ul în Vercel
+2. Adaugă variabilele de mediu în setările proiectului
+3. Deployul se va face automat la fiecare push în main
 
-## Deploy on Vercel
+## 🔄 Actualizare Sitemap
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Sitemapul se actualizează automat folosind GitHub Actions. Configurația se află în `.github/workflows/sitemap.yml`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📱 Responsive Design
+
+Aplicația este complet responsivă și optimizată pentru:
+- 📱 Mobile (320px+)
+- 📱 Tablet (768px+)
+- 💻 Desktop (1024px+)
+- 🖥️ Large Desktop (1280px+)
+
+## 🤝 Contribuție
+
+Contribuțiile sunt binevenite! Te rugăm să:
+
+1. Fork repository-ul
+2. Creează un branch pentru feature (`git checkout -b feature/AmazingFeature`)
+3. Commit schimbările (`git commit -m 'Add some AmazingFeature'`)
+4. Push la branch (`git push origin feature/AmazingFeature`)
+5. Deschide un Pull Request
+
+## 📄 Licență
+
+Acest proiect este licențiat sub [MIT License](LICENSE).
+
+## 📞 Contact
+
+Pentru întrebări și suport:
+- Email: contact@farm2door.ro
+- Website: https://farm2door.ro
+
+---
+
+Dezvoltat cu ❤️ pentru fermierii și consumatorii din România
