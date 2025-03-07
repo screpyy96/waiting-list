@@ -1,0 +1,17 @@
+name: Generate Sitemap
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Rulează la miezul nopții
+  workflow_dispatch:      # Permite rularea manuală
+
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Trigger sitemap regeneration
+        run: |
+          curl -X GET ${{ secrets.SITE_URL }}/api/sitemap
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }} 
