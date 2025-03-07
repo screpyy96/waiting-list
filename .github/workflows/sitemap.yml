@@ -2,16 +2,36 @@ name: Generate Sitemap
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Rulează la miezul nopții
-  workflow_dispatch:      # Permite rularea manuală
+    - cron: '0 0 * * *'  # Run at midnight every day
+  workflow_dispatch:      # Allow manual triggering
+  push:
+    branches: [ main ]    # Run on push to main branch
 
 jobs:
   generate-sitemap:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Trigger sitemap regeneration
-        run: |
-          curl -X GET ${{ secrets.SITE_URL }}/api/sitemap
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate sitemap
+        run: npm run generate-sitemap
         env:
-          SITE_URL: ${{ secrets.SITE_URL }} 
+          SITE_URL: 'https://farm2door.ro'
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add public/sitemap.xml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update sitemap" && git push) 

@@ -1,15 +1,13 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://your-domain.com',
+  siteUrl: process.env.SITE_URL || 'https://farm2door.ro',
   generateRobotsTxt: true,
-  changefreq: 'daily',
+  changefreq: 'weekly',
   priority: 0.7,
   sitemapSize: 7000,
-  exclude: ['/server-sitemap.xml'],
+  generateIndexSitemap: false,
+  autoLastmod: true,
   robotsTxtOptions: {
-    additionalSitemaps: [
-      'https://your-domain.com/server-sitemap.xml',
-    ],
     policies: [
       {
         userAgent: '*',

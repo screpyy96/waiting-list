@@ -1,6 +1,11 @@
-# https://www.robotstxt.org/robotstxt.html
+# *
 User-agent: *
 Allow: /
+Disallow: /private/*
+Disallow: /api/*
 
-# Sitemap
-Sitemap: https://farm2door.ro/sitemap.xml 
+# Host
+Host: https://farm2door.ro
+
+# Sitemaps
+Sitemap: https://farm2door.ro/sitemap.xml
