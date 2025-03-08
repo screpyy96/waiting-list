@@ -1,20 +1,32 @@
 import { type NextRequest } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { type WaitingListEntry } from '@/core/types/common';
+import { NextResponse } from 'next/server';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://your-project.supabase.co';
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'your-anon-key';
+
+// Only create Supabase client if we're not building
+const supabase = process.env.NODE_ENV === 'production' 
+  ? createClient(supabaseUrl, supabaseKey)
+  : null;
 
 export async function POST(request: NextRequest) {
   try {
     const { email, name, phone } = await request.json();
 
     if (!email) {
-      return Response.json(
+      return NextResponse.json(
         { error: 'Email is required' },
         { status: 400 }
+      );
+    }
+
+    // In development/build, return mock success
+    if (!supabase) {
+      return NextResponse.json(
+        { message: 'Successfully joined waiting list (mock)', data: { email } },
+        { status: 200 }
       );
     }
 
@@ -26,7 +38,7 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (existing) {
-      return Response.json(
+      return NextResponse.json(
         { error: 'Email already registered' },
         { status: 400 }
       );
@@ -48,16 +60,16 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Error inserting waiting list entry:', error);
-      return Response.json(
+      return NextResponse.json(
         { error: 'Failed to join waiting list' },
         { status: 500 }
       );
     }
 
-    return Response.json({ data: data as WaitingListEntry });
+    return NextResponse.json({ data: data as WaitingListEntry });
   } catch (error) {
     console.error('Error processing waiting list request:', error);
-    return Response.json(
+    return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
     );

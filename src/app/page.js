@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from "next/image";
 import WaitingListForm from "@/features/waiting-list/WaitingListForm";
 
 export default function Home() {
