@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Image from "next/image";
-import WaitingList from "@/components/WaitingList";
+import WaitingListForm from "@/features/waiting-list/WaitingListForm";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -231,7 +230,7 @@ export default function Home() {
             </p>
           </div>
           
-          <WaitingList />
+          <WaitingListForm />
         </div>
       </section>
 
