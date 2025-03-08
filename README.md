@@ -142,3 +142,4 @@ Pentru întrebări și suport:
 ---
 
 Dezvoltat cu ❤️ pentru fermierii și consumatorii din România
+# Farm2door
